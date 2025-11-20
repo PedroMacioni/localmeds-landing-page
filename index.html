@@ -1,56 +1,446 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LocalMeds</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LocalMeds — Organize sua Saúde</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#6b4eff",
+            secondary: "#4f46e5",
+            soft: "#f9f9ff",
+            dark: "#1a1a1a"
+          },
+          fontFamily: {
+            inter: ["Inter", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+
+  <!-- AOS Animations -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      AOS.init({ duration: 900, offset: 80 });
+    });
+  </script>
+
+  <!-- Smooth Scroll (Lenis) -->
+  <script src="https://unpkg.com/@studio-freight/lenis"></script>
+
+  <script>
+    const lenis = new Lenis()
+    function raf(time){
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+    requestAnimationFrame(raf)
+  </script>
 
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-      background: #f8f8ff;
-      color: #3b3d46;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      text-align: center;
+    .glass {
+      backdrop-filter: blur(16px);
+      background: rgba(255,255,255,0.55);
+      border: 1px solid rgba(255,255,255,0.35);
     }
 
-    .container {
-      padding: 20px;
-      max-width: 600px;
+    .floating-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 50;
     }
 
-    h1 {
-      color: #6b4eff;
-      font-size: 2.8rem;
-      margin-bottom: 20px;
+    .glow-card {
+      position: relative;
+      overflow: hidden;
     }
-
-    p {
-      font-size: 1.4rem;
-      line-height: 1.6;
+    .glow-card::before {
+      content: "";
+      position: absolute;
+      inset: -50%;
+      background: radial-gradient(circle at center, rgba(107,78,255,0.18), transparent 70%);
+      transform: rotate(45deg);
     }
-
-    /* Responsividade */
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 2.2rem;
-      }
-      p {
-        font-size: 1.2rem;
-      }
-    }
-
   </style>
 </head>
-<body>
-  <div class="container">
-    <h1>Te amo meu neném</h1>
-    <p>Você é a coisa mais importante que eu tenho na vida 💗</p>
+
+<body class="font-inter bg-soft text-dark overflow-x-hidden">
+
+<!-- NAV -->
+<header class="w-full py-5 px-6 lg:px-20 flex justify-between items-center glass shadow-sm sticky top-0 z-50">
+  <div class="text-2xl font-extrabold text-primary">LocalMeds</div>
+
+  <nav class="hidden md:flex gap-8 text-gray-700 font-medium">
+    <a href="#inicio" class="hover:text-primary transition">Início</a>
+    <a href="#beneficios" class="hover:text-primary transition">Benefícios</a>
+    <a href="#processo" class="hover:text-primary transition">Como funciona</a>
+    <a href="#planos" class="hover:text-primary transition">Planos</a>
+    <a href="#faq" class="hover:text-primary transition">FAQ</a>
+  </nav>
+</header>
+
+<!-- HERO PREMIUM (Cards Flutuantes + Mockups) -->
+<section id="inicio" class="relative px-6 lg:px-20 pt-36 pb-48 overflow-hidden">
+
+  <!-- Background Glow + Dots -->
+  <div class="absolute inset-0 pointer-events-none opacity-70">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(107,78,255,0.08),transparent_75%)]"></div>
+    <div class="absolute inset-0 bg-[url('https://www.toptal.com/designers/subtlepatterns/uploads/dot-grid.png')] opacity-20"></div>
   </div>
+
+  <div class="relative max-w-5xl mx-auto text-center">
+
+    <!-- Title -->
+    <h1 data-aos="fade-up"
+        class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight mb-6">
+      O jeito mais inteligente de<br>
+      <span class="bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">
+        gerenciar seus medicamentos
+      </span>
+    </h1>
+
+    <!-- Subhead -->
+    <p data-aos="fade-up" data-aos-delay="150"
+       class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-10">
+      Um copiloto de saúde que organiza validades, doses, alertas e ambientes —
+      automaticamente, com OCR inteligente e 100% offline.
+    </p>
+
+    <!-- Social Proof -->
+    <div data-aos="fade-up" data-aos-delay="250" class="flex items-center justify-center gap-3 mb-10">
+      <div class="flex -space-x-3">
+        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://i.pravatar.cc/101">
+        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://i.pravatar.cc/102">
+        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://i.pravatar.cc/103">
+        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://i.pravatar.cc/104">
+      </div>
+      <span class="text-gray-700 text-sm md:text-base font-medium">+4.000 usuários satisfeitos</span>
+    </div>
+
+    <!-- CTA -->
+    <div data-aos="zoom-in" data-aos-delay="300">
+      <a href="#"
+         class="px-10 py-4 text-lg md:text-xl bg-primary text-white rounded-full font-semibold 
+                shadow-[0_8px_25px_rgba(107,78,255,0.25)] hover:scale-105 transition">
+        Baixar App
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFÍCIOS -->
+<section id="beneficios" class="px-6 lg:px-20 py-32 bg-white">
+
+  <h2 data-aos="fade-up" class="text-3xl md:text-4xl font-bold text-center mb-16">
+    Recursos que fazem a diferença
+  </h2>
+
+  <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 max-w-6xl mx-auto">
+
+    <div data-aos="fade-up" class="glass p-8 rounded-3xl shadow border">
+      <h3 class="text-xl font-bold mb-3 text-primary">OCR Inteligente</h3>
+      <p class="text-gray-600">Detecta nome, lote, validade e dose automaticamente.</p>
+    </div>
+
+    <div data-aos="fade-up" data-aos-delay="100" class="glass p-8 rounded-3xl shadow border">
+      <h3 class="text-xl font-bold mb-3 text-secondary">Alertas de Validade</h3>
+      <p class="text-gray-600">Acompanhe prazos e receba avisos antes que expirem.</p>
+    </div>
+
+    <div data-aos="fade-up" data-aos-delay="200" class="glass p-8 rounded-3xl shadow border">
+      <h3 class="text-xl font-bold mb-3 text-primary">Ambientes</h3>
+      <p class="text-gray-600">Banheiro, cozinha, mochila — organize tudo como quiser.</p>
+    </div>
+
+    <div data-aos="fade-up" data-aos-delay="300" class="glass p-8 rounded-3xl shadow border">
+      <h3 class="text-xl font-bold mb-3 text-secondary">Funciona Offline</h3>
+      <p class="text-gray-600">Seus dados ficam somente no seu dispositivo.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROCESSO -->
+<section id="processo" class="px-6 lg:px-20 py-32 bg-soft">
+  <h2 data-aos="fade-up" class="text-3xl md:text-4xl font-bold text-center mb-12">
+    Como funciona?
+  </h2>
+
+  <div class="grid md:grid-cols-3 gap-16 max-w-5xl mx-auto text-center">
+
+    <div data-aos="fade-up">
+      <div class="text-primary text-5xl font-extrabold mb-4">1</div>
+      <h3 class="text-xl font-semibold mb-3">Fotografe</h3>
+      <p class="text-gray-600">Use a câmera e deixe o app identificar tudo.</p>
+    </div>
+
+    <div data-aos="fade-up" data-aos-delay="150">
+      <div class="text-secondary text-5xl font-extrabold mb-4">2</div>
+      <h3 class="text-xl font-semibold mb-3">OCR Automático</h3>
+      <p class="text-gray-600">Captura lote, dose, validade e nome do medicamento.</p>
+    </div>
+
+    <div data-aos="fade-up" data-aos-delay="300">
+      <div class="text-primary text-5xl font-extrabold mb-4">3</div>
+      <h3 class="text-xl font-semibold mb-3">Tudo Organizado</h3>
+      <p class="text-gray-600">Ambientes, alertas e histórico sempre atualizados.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- PLANOS -->
+<section id="planos" class="px-6 lg:px-20 py-32 bg-gradient-to-b from-soft to-white">
+
+  <h2 data-aos="fade-up" class="text-3xl md:text-5xl font-extrabold text-center mb-6">
+    Planos simples, completos e inteligentes
+  </h2>
+
+  <p data-aos="fade-up" data-aos-delay="100"
+     class="text-gray-600 text-lg text-center max-w-2xl mx-auto mb-16">
+    Comece gratuitamente e desbloqueie recursos avançados com IA e backup em nuvem no Premium.
+  </p>
+
+  <!-- Toggle -->
+  <div data-aos="fade-up" class="flex justify-center mb-10">
+    <div class="glass shadow p-2 rounded-full flex items-center gap-2">
+      <button id="mensalBtn" class="px-6 py-2 rounded-full bg-primary text-white font-semibold">
+        Mensal
+      </button>
+      <button id="anualBtn" class="px-6 py-2 rounded-full text-gray-600 font-semibold hover:bg-gray-100 transition">
+        Anual -20%
+      </button>
+    </div>
+  </div>
+
+  <!-- Cards -->
+  <div class="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+
+    <!-- Básico -->
+    <div data-aos="zoom-in"
+         class="glass p-8 md:p-10 rounded-3xl shadow-lg border hover:-translate-y-2 hover:shadow-2xl transition">
+      <h3 class="text-2xl font-bold">Básico</h3>
+      <p class="text-gray-600 mt-2 mb-6">Para começar bem.</p>
+      
+      <div class="text-4xl font-extrabold text-dark mb-8">
+        <span data-price-monthly="R$ 0" data-price-yearly="R$ 0">R$ 0</span>
+        <span class="text-lg font-normal text-gray-500">/ mês</span>
+      </div>
+
+      <ul class="space-y-4 text-gray-700 mb-10 text-base">
+        <li>✔ Cadastro de medicamentos</li>
+        <li>✔ OCR automático</li>
+        <li>✔ Alertas essenciais</li>
+        <li>✔ Organização por ambientes</li>
+        <li>✔ Funciona totalmente offline</li>
+      </ul>
+    </div>
+
+    <!-- Premium -->
+    <div data-aos="zoom-in" data-aos-delay="150"
+         class="glow-card glass p-[3px] rounded-3xl shadow-xl scale-105 hover:scale-110 transition">
+
+      <div class="relative bg-white/60 backdrop-blur-xl p-8 md:p-10 rounded-3xl text-dark border">
+
+        <!-- Ribbon -->
+        <div class="absolute -top--0 right-6 rotate-3">
+          <span class="bg-primary text-white px-4 py-1 rounded-full shadow-lg text-sm font-semibold">
+            Recomendado
+          </span>
+        </div>
+
+        <h3 class="text-2xl font-bold text-primary">Premium</h3>
+        <p class="text-gray-600 mt-2 mb-6">O máximo de praticidade e tecnologia.</p>
+
+        <div class="text-4xl font-extrabold text-dark mb-8">
+          <span data-price-monthly="R$ 9,90" data-price-yearly="R$ 99,00">R$ 9,90</span>
+          <span class="text-lg font-normal text-gray-500">/ mês</span>
+        </div>
+
+        <ul class="space-y-4 text-gray-700 mb-10 text-base">
+
+  <!-- IA DESTAQUE -->
+  <li class="flex items-start gap-3">
+    <span class="text-primary">
+      <!-- CPU Chip Icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M9.75 3v2.25m4.5-2.25V5.25m4.5 4.5H21m-2.25 4.5H21m-2.25 4.5H21M3 9.75h2.25m-2.25 4.5H5.25m-2.25 4.5H5.25M6.75 6.75h10.5a.75.75 0 0 1 .75.75v10.5a.75.75 0 0 1-.75.75H6.75a.75.75 0 0 1-.75-.75V7.5a.75.75 0 0 1 .75-.75Z" />
+      </svg>
+    </span>
+
+    <span>
+      <strong>IA LocalMeds Assist</strong>: interpreta bulas, explica medicamentos, identifica interações,
+      detecta duplicidade e corrige OCR automaticamente.
+    </span>
+  </li>
+
+  <!-- BACKUP EM NUVEM -->
+  <li class="flex items-start gap-3">
+    <span class="text-primary">
+      <!-- Cloud Icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+        viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M3 15.75a4.5 4.5 0 0 1 4.5-4.5h.75A6.75 6.75 0 0 1 21 12.75a4.5 4.5 0 0 1-4.5 4.5H7.5A4.5 4.5 0 0 1 3 15.75Z" />
+      </svg>
+    </span>
+
+    <span>
+      <strong>Backup em nuvem criptografado</strong> com sincronização multilocal e restauração automática.
+    </span>
+  </li>
+
+  <li>✔ Tudo do Básico</li>
+  <li>✔ Ambientes ilimitados</li>
+  <li>✔ Histórico completo</li>
+  <li>✔ Suporte prioritário</li>
+
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Família -->
+    <div data-aos="zoom-in" data-aos-delay="300"
+         class="glass p-8 md:p-10 rounded-3xl shadow-lg border hover:-translate-y-2 hover:shadow-2xl transition">
+
+      <h3 class="text-2xl font-bold">Família</h3>
+      <p class="text-gray-600 mt-2 mb-6">Para cuidar de todos.</p>
+
+      <div class="text-4xl font-extrabold text-dark mb-8">
+        <span data-price-monthly="R$ 14,90" data-price-yearly="R$ 149,00">R$ 14,90</span>
+        <span class="text-lg font-normal text-gray-500">/ mês</span>
+      </div>
+
+      <ul class="space-y-4 text-gray-700 mb-10 text-base">
+        <li>✔ Até 6 perfis independentes</li>
+        <li>✔ Compartilhamento seguro</li>
+        <li>✔ Histórico individual</li>
+        <li>✔ Tudo do Premium</li>
+        <li>✔ Backup em nuvem familiar</li>
+        <li>✔ IA Assist para todos os membros</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- FAQ -->
+<section id="faq" class="px-6 lg:px-20 py-32 bg-white">
+  <h2 data-aos="fade-up" class="text-3xl md:text-4xl font-bold text-center mb-12">
+    Perguntas frequentes
+  </h2>
+
+  <div class="max-w-3xl mx-auto space-y-6">
+
+    <details class="glass p-6 rounded-2xl shadow-sm border" data-aos="fade-up">
+      <summary class="cursor-pointer text-lg font-semibold">O app funciona offline?</summary>
+      <p class="mt-3 text-gray-600">Sim. Todos os dados ficam apenas no seu dispositivo.</p>
+    </details>
+
+    <details class="glass p-6 rounded-2xl shadow-sm border" data-aos="fade-up" data-aos-delay="100">
+      <summary class="cursor-pointer text-lg font-semibold">O OCR é realmente preciso?</summary>
+      <p class="mt-3 text-gray-600">Sim — identifica lote, validade, nome, dose e laboratório.</p>
+    </details>
+
+    <details class="glass p-6 rounded-2xl shadow-sm border" data-aos="fade-up" data-aos-delay="200">
+      <summary class="cursor-pointer text-lg font-semibold">Meus dados são enviados para servidores?</summary>
+      <p class="mt-3 text-gray-600">Nunca. O LocalMeds é totalmente local-first.</p>
+    </details>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-white px-6 lg:px-20 py-20 border-t">
+
+  <div class="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+
+    <!-- Coluna 1 -->
+    <div>
+      <h3 class="text-primary text-xl font-bold mb-4">LocalMeds</h3>
+      <p class="text-gray-600">Seu cofre inteligente de saúde.</p>
+    </div>
+
+    <!-- Coluna 2 -->
+    <div>
+      <h4 class="font-semibold text-dark mb-4">Links</h4>
+      <ul class="text-gray-600 space-y-2">
+        <li><a href="#inicio" class="hover:text-primary transition">Início</a></li>
+        <li><a href="#beneficios" class="hover:text-primary transition">Benefícios</a></li>
+        <li><a href="#planos" class="hover:text-primary transition">Planos</a></li>
+        <li><a href="#faq" class="hover:text-primary transition">FAQ</a></li>
+      </ul>
+    </div>
+
+    <!-- Coluna 3 -->
+    <div>
+      <h4 class="font-semibold text-dark mb-4">Contato</h4>
+      <p class="text-gray-600 mb-3">Email: suporte@localmeds.com.br</p>
+
+      <h4 class="font-semibold text-dark mt-6 mb-4">Baixe o app</h4>
+      <div class="flex gap-3">
+        <div class="glass px-4 py-3 rounded-xl shadow text-sm">App Store</div>
+        <div class="glass px-4 py-3 rounded-xl shadow text-sm">Google Play</div>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="text-center text-gray-500 text-sm mt-16">
+    LocalMeds © 2025 — Todos os direitos reservados.
+  </p>
+</footer>
+
+<!-- BOTÃO FLUTUANTE -->
+<div class="floating-btn">
+  <a href="#"
+     class="glass px-6 py-3 rounded-full shadow-lg text-primary font-semibold backdrop-blur-xl hover:scale-105 transition">
+    Baixar App
+  </a>
+</div>
+
+<!-- Toggle Script -->
+<script>
+  const mensalBtn = document.getElementById("mensalBtn");
+  const anualBtn = document.getElementById("anualBtn");
+
+  mensalBtn.onclick = () => {
+    mensalBtn.classList.add("bg-primary", "text-white");
+    anualBtn.classList.remove("bg-primary", "text-white");
+
+    document.querySelectorAll("[data-price-monthly]").forEach(el => {
+      el.innerText = el.dataset.priceMonthly;
+    });
+  };
+
+  anualBtn.onclick = () => {
+    anualBtn.classList.add("bg-primary", "text-white");
+    mensalBtn.classList.remove("bg-primary", "text-white");
+
+    document.querySelectorAll("[data-price-yearly]").forEach(el => {
+      el.innerText = el.dataset.priceYearly;
+    });
+  };
+</script>
+
 </body>
 </html>
