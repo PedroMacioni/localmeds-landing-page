@@ -94,6 +94,429 @@
       height: 72px;
     }
 
+    
+/* ===== GIGI AI SECTION ===== */
+.gigi-ai-section {
+  padding: 100px 24px;
+  background: linear-gradient(135deg, #f9f5f2 0%, #fef9f6 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.gigi-ai-section::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(196, 106, 74, 0.05) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.gigi-ai-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Left Visual */
+.gigi-ai-visual {
+  position: relative;
+  display: flex;
+  margin-left: -150px;
+  justify-content: center;
+  align-items: center;
+}
+
+.gigi-ai-avatar-wrapper {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  animation: gigiAIFloat 6s ease-in-out infinite;
+}
+
+.gigi-ai-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(196, 106, 74, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: gigiAIGlow 3s ease-in-out infinite alternate;
+}
+
+.gigi-ai-avatar {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 40px rgba(196, 106, 74, 0.2));
+  z-index: 2;
+}
+
+.gigi-ai-badge {
+  position: absolute;
+  bottom: 40px;
+  right: 20px;
+  background: linear-gradient(135deg, var(--primary), #d4845e);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 8px 24px rgba(196, 106, 74, 0.4);
+  z-index: 3;
+  animation: gigiAIPulse 2s ease-in-out infinite;
+}
+
+/* Floating Features */
+.gigi-feature-float {
+  position: absolute;
+  background: white;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  border: 1px solid var(--border);
+  animation: gigiFeatureFloat 4s ease-in-out infinite;
+  white-space: nowrap;
+}
+
+.gigi-feature-float:nth-child(2) {
+  animation-delay: 1s;
+}
+
+.gigi-feature-float:nth-child(3) {
+  animation-delay: 2s;
+}
+
+.gigi-feature-icon {
+  width: 32px;
+  height: 32px;
+  background: var(--primary-light);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+/* Right Content */
+.gigi-ai-title {
+  font-size: clamp(32px, 4vw, 44px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+
+.highlight-ai {
+  color: var(--primary);
+  position: relative;
+  display: inline-block;
+}
+
+.highlight-ai::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: rgba(196, 106, 74, 0.2);
+  border-radius: 4px;
+  z-index: -1;
+}
+
+.gigi-ai-subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+/* Chat Demo */
+.gigi-chat-demo {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+  margin-bottom: 24px;
+}
+
+.gigi-chat-message {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  animation: gigiFadeInUp 0.5s ease-out both;
+}
+
+.gigi-chat-message:last-child {
+  margin-bottom: 0;
+}
+
+.gigi-chat-message.ai {
+  animation-delay: 1s;
+}
+
+.gigi-chat-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 20px;
+}
+
+.gigi-chat-message.ai .gigi-chat-avatar {
+  background: var(--primary-light);
+  border: 2px solid var(--primary);
+}
+
+.gigi-chat-message.ai .gigi-chat-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.gigi-chat-bubble {
+  flex: 1;
+  background: var(--surface);
+  padding: 12px 16px;
+  border-radius: 12px 12px 12px 4px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.gigi-chat-message.ai .gigi-chat-bubble {
+  background: var(--primary-light);
+  border: 1px solid rgba(196, 106, 74, 0.2);
+  border-radius: 12px 12px 4px 12px;
+}
+
+.gigi-typing {
+  display: flex;
+  gap: 4px;
+  padding: 8px 0;
+  animation: gigiTypingFade 2s ease-out forwards;
+}
+
+.gigi-typing span {
+  width: 8px;
+  height: 8px;
+  background: var(--primary);
+  border-radius: 50%;
+  animation: gigiTypingDot 1.4s ease-in-out infinite;
+}
+
+.gigi-typing span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.gigi-typing span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.gigi-response {
+  opacity: 0;
+  animation: gigiFadeIn 0.5s ease-out 2s forwards;
+  margin: 0;
+  color: var(--text);
+}
+
+.gigi-response strong {
+  color: var(--primary);
+}
+
+/* Quick Actions */
+.gigi-quick-actions {
+  margin-top: 24px;
+}
+
+.gigi-quick-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.gigi-quick-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.gigi-quick-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  transition: all var(--transition);
+  font-family: 'Poppins', sans-serif;
+}
+
+.gigi-quick-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.gigi-quick-btn svg {
+  color: var(--primary);
+}
+
+/* Animations */
+@keyframes gigiAIFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes gigiAIGlow {
+  from {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+@keyframes gigiAIPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes gigiFeatureFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes gigiFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gigiTypingDot {
+  0%, 60%, 100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes gigiTypingFade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+@keyframes gigiFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .gigi-ai-inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    text-align: center;
+  }
+
+  .gigi-ai-avatar-wrapper {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+  }
+
+  .gigi-feature-float {
+    font-size: 11px;
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .gigi-ai-section {
+    padding: 64px 24px;
+  }
+
+  .gigi-ai-avatar-wrapper {
+    width: 250px;
+    height: 250px;
+  }
+
+  .gigi-feature-float {
+    display: none;
+  }
+
+  .gigi-quick-buttons {
+    flex-direction: column;
+  }
+
+  .gigi-quick-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
     .navbar-logo {
       display: flex;
       align-items: center;
@@ -1649,6 +2072,7 @@
       <ul class="navbar-links" id="navLinks">
         <li><a href="#features">Recursos</a></li>
         <li><a href="#how-it-works">Como Funciona</a></li>
+        <li><a href="#gigi-ai">Assistente Inteligente</a></li>
         <li><a href="#pricing">Planos</a></li>
         <li><a href="#testimonials">Depoimentos</a></li>
         <li><a href="#pricing" class="navbar-cta">Comece Grátis</a></li>
@@ -1847,6 +2271,113 @@
       </div>
     </div>
   </section>
+
+  <!-- GIGI AI ASSISTANT SECTION -->
+<section class="gigi-ai-section" id="gigi-ai">
+  <div class="section-container">
+    <div class="gigi-ai-inner">
+      <!-- Left: Gigi Mascot -->
+      <div class="gigi-ai-visual">
+        <div class="gigi-ai-avatar-wrapper">
+          <div class="gigi-ai-glow"></div>
+          <img src="mascot.png" alt="Gigi - Assistente de IA LocalMeds" class="gigi-ai-avatar" />
+          <div class="gigi-ai-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5"/>
+              <path d="M2 12l10 5 10-5"/>
+            </svg>
+            IA Avançada
+          </div>
+        </div>
+        
+        <!-- Floating Features -->
+        <div class="gigi-feature-float" style="top: 20%; left: -3%;">
+          <div class="gigi-feature-icon">💊</div>
+          <span>Identifica Medicamentos</span>
+        </div>
+        <div class="gigi-feature-float" style="top: 25%; right: 8%;">
+          <div class="gigi-feature-icon">⚠️</div>
+          <span>Alerta Interações</span>
+        </div>
+        <div class="gigi-feature-float" style="bottom: 15%; left: 5%;">
+          <div class="gigi-feature-icon">📊</div>
+          <span>Analisa Padrões</span>
+        </div>
+      </div>
+
+      <!-- Right: Interactive Chat -->
+      <div class="gigi-ai-content">
+        <div class="section-tag">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+            <path d="M2 17l10 5 10-5"/>
+            <path d="M2 12l10 5 10-5"/>
+          </svg>
+          Assistente Inteligente
+        </div>
+        
+        <h2 class="gigi-ai-title">
+          Conheça a <span class="highlight-ai">Gigi</span>,<br>
+          sua assistente de IA
+        </h2>
+        
+        <p class="gigi-ai-subtitle">
+          Tire dúvidas sobre medicamentos, receba orientações personalizadas e tenha suporte 24/7 com nossa inteligência artificial.
+        </p>
+
+        <!-- Chat Demo -->
+        <div class="gigi-chat-demo">
+          <div class="gigi-chat-message user">
+            <div class="gigi-chat-avatar">👤</div>
+            <div class="gigi-chat-bubble">
+              <p>Posso tomar Ibuprofeno com Losartana?</p>
+            </div>
+          </div>
+
+          <div class="gigi-chat-message ai">
+            <div class="gigi-chat-avatar">
+              <img src="mascot.png" alt="Gigi" />
+            </div>
+            <div class="gigi-chat-bubble">
+              <div class="gigi-typing">
+                <span></span><span></span><span></span>
+              </div>
+              <p class="gigi-response">
+                ⚠️ <strong>Atenção!</strong> Existe interação moderada entre Ibuprofeno e Losartana. O Ibuprofeno pode reduzir a eficácia do Losartana e aumentar a pressão arterial. <strong>Recomendo consultar seu médico</strong> antes de combinar esses medicamentos.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="gigi-quick-actions">
+          <p class="gigi-quick-label">Pergunte sobre:</p>
+          <div class="gigi-quick-buttons">
+            <button class="gigi-quick-btn" data-question="Interações medicamentosas">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+              Interações
+            </button>
+            <button class="gigi-quick-btn" data-question="Horários ideais">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+              </svg>
+              Horários
+            </button>
+            <button class="gigi-quick-btn" data-question="Efeitos colaterais">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+              </svg>
+              Efeitos
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
   <!-- HOW IT WORKS -->
   <section class="how-it-works" id="how-it-works">
@@ -2248,40 +2779,8 @@
     </div>
   </footer>
 
-  <!-- GIGI - AI MASCOT -->
-  <div class="gigi-pulse"></div>
-  <div class="gigi-container" id="gigiContainer">
-    <div class="gigi-bubble" id="gigiBubble">
-      <span class="gigi-name">Gigi</span>
-      <p>Olá! Eu sou a Gigi, sua assistente de saúde. Posso te ajudar a organizar seus medicamentos! 💊</p>
-      <span class="gigi-role">IA do LocalMeds</span>
-    </div>
-    <div class="gigi-avatar">
-      <img src="mascot.png" alt="Gigi - Mascote LocalMeds" />
-    </div>
-  </div>
-
   <script>
-    // Gigi mascot interaction
-    const gigiContainer = document.getElementById('gigiContainer');
-    const gigiBubble = document.getElementById('gigiBubble');
-    let gigiMessages = [
-      'Olá! Eu sou a Gigi, sua assistente de saúde. Posso te ajudar a organizar seus medicamentos! 💊',
-      'Sabia que verificar interações entre medicamentos pode salvar vidas? Experimente o plano Premium! 🛡️',
-      'Não esqueça: tomar seus remédios no horário certo faz toda a diferença! ⏰',
-      'Com o plano Família, você cuida de quem ama. Que tal experimentar? 👨‍👩‍👧‍👦',
-      'Precisa de ajuda? Estou sempre aqui para você! 😊',
-    ];
-    let gigiIndex = 0;
-
-    gigiContainer.addEventListener('click', () => {
-      gigiIndex = (gigiIndex + 1) % gigiMessages.length;
-      gigiBubble.style.animation = 'none';
-      gigiBubble.offsetHeight; // trigger reflow
-      gigiBubble.style.animation = 'gigiBubbleIn 0.3s ease-out both';
-      gigiBubble.querySelector('p').textContent = gigiMessages[gigiIndex];
-    });
-
+   
     // Mobile menu toggle
     const mobileToggle = document.getElementById('mobileToggle');
     const navLinks = document.getElementById('navLinks');
@@ -2386,6 +2885,53 @@
         }
       });
     });
+
+    
+// Gigi Quick Actions
+const gigiQuickBtns = document.querySelectorAll('.gigi-quick-btn');
+const gigiChatDemo = document.querySelector('.gigi-chat-demo');
+
+const gigiResponses = {
+  "Interações medicamentosas": {
+    user: "Anticoagulantes podem misturar com quais remédios?",
+    ai: "💊 Podem interagir com <strong>anti-inflamatórios, aspirina</strong> e alguns antibióticos. Antes de combinar, consulte seu médico."
+  },
+  "Horários ideais": {
+    user: "Qual o melhor horário para tomar remédios para pressão?",
+    ai: "🕐 O ideal é tomar pela <strong>manhã</strong>, logo após acordar. Isso ajuda a controlar a pressão durante o dia. Mas sempre siga a orientação do seu médico, pois pode variar!"
+  },
+  "Efeitos colaterais": {
+    user: "Quais os efeitos colaterais mais comuns de antibióticos?",
+    ai: "💊 Os mais comuns são: <strong>náuseas, diarreia, dor de estômago</strong> e, às vezes, reações alérgicas. Se tiver sintomas graves, procure um médico imediatamente!"
+  }
+};
+
+gigiQuickBtns.forEach(btn => {
+  btn.addEventListener('click', function() {
+    const question = this.dataset.question;
+    const response = gigiResponses[question];
+    
+    if (response) {
+      // Update chat
+      gigiChatDemo.innerHTML = `
+        <div class="gigi-chat-message user" style="animation: gigiFadeInUp 0.3s ease-out both;">
+          <div class="gigi-chat-avatar">👤</div>
+          <div class="gigi-chat-bubble">
+            <p>${response.user}</p>
+          </div>
+        </div>
+        <div class="gigi-chat-message ai" style="animation: gigiFadeInUp 0.3s ease-out 0.5s both;">
+          <div class="gigi-chat-avatar">
+            <img src="mascot.png" alt="Gigi" />
+          </div>
+          <div class="gigi-chat-bubble">
+            <p class="gigi-response" style="opacity: 1; animation: none;">${response.ai}</p>
+          </div>
+        </div>
+      `;
+    }
+  });
+});
   </script>
 </body>
 </html>
