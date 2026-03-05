@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="page-title">LocalMeds - Cuidado Acolhedor na Palma da Sua Mão</title>
+  <title id="page-title">LocalMeds</title>
   <link rel="icon" type="image/x-icon" href="mascot.png">
   <meta name="description" id="page-desc" content="LocalMeds - Gerencie seus medicamentos com acolhimento e segurança. Lembretes, alertas de interação, compartilhamento familiar e muito mais.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1516,23 +1516,6 @@
     </div>
   </section>
 
-  <!-- ===== MURAL DE PRÉ-CADASTROS ===== -->
-  <section class="presave-wall-section">
-    <div class="section-container">
-      <div class="presave-wall-header reveal">
-        <p class="presave-wall-eyebrow" data-i18n="wall_eyebrow">🎉 Já na fila do lançamento</p>
-        <h3 class="presave-wall-title" data-i18n="wall_title">Quem já garantiu o 1 mês grátis</h3>
-        <p class="presave-wall-sub" data-i18n="wall_sub">Essas pessoas vão ser as primeiras a usar o LocalMeds.</p>
-      </div>
-      <div class="presave-wall reveal" id="presaveWall">
-        <div class="presave-wall-loading">
-          <div class="wall-spinner"></div>
-          <span data-i18n="loading">Carregando lista...</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- FEATURES -->
   <section class="features" id="features">
     <div class="section-container">
@@ -2073,9 +2056,17 @@
     });
 
     // ===== COUNTDOWN =====
-    // Set launch date: 90 days from now
-    const launchDate = new Date();
-    launchDate.setDate(launchDate.getDate() + 90);
+    // Set launch date: 60 days from now
+    let launchDate = localStorage.getItem("launchDate");
+
+    if (!launchDate) {
+        const date = new Date();
+        date.setDate(date.getDate() + 60);
+        launchDate = date.toISOString();
+        localStorage.setItem("launchDate", launchDate);
+    }
+
+    launchDate = new Date(launchDate);
 
     function updateCountdown() {
       const now = new Date();
